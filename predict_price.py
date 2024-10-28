@@ -14,11 +14,18 @@ def check_input(mileage)-> int:
         sys.exit(1)
     return num
 
+def read_file():
+    file = open("data", "r")
+    s = file.read()
+    data = s.split(",")
+    return float(data[0]), float(data[1])
+
 def main():
     print("Enter a mileage:")
     mileage = input()
     num = check_input(mileage)
-    estimate_price = predict_price(0,0,num)
+    theta0, theta1 = read_file()
+    estimate_price = predict_price(theta0, theta1, num)
     print("The estimate price is", estimate_price)
 
 if __name__ == "__main__":
