@@ -15,6 +15,9 @@ def check_input(mileage)-> int:
     except ValueError:
         print("The input is not a number")
         sys.exit(1)
+    if (num < 0):
+        print("The mileage can't be negative")
+        sys.exit(1)
     return num
 
 def read_file():
