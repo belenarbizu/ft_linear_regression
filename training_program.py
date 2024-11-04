@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from predict_price import predict_price
+import matplotlib.pyplot as plt
 
 
 def read_file():
@@ -74,6 +75,8 @@ def main():
     mileage_scaled, mean, stnd_dev = feature_scaling(data_dict['km'])
     theta0, theta1 = update_theta(mileage_scaled, data_dict['price'], mean, stnd_dev)
     data_file(theta0, theta1)
+    plt.plot(data_dict['km'], data_dict['price'])
+    plt.show()
 
 if __name__ == "__main__":
     main()
