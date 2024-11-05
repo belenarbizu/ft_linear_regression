@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from predict_price import predict_price
 import matplotlib.pyplot as plt
+import argparse
 
 
 def read_file():
@@ -71,12 +72,28 @@ def data_file(theta0, theta1):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Predicts the price of a car by using a linear function")
+    parser.add_argument('-p', '--plot-data', action='store_true', help="Plot the data")
+    parser.add_argument('-l', '--plot-line', action='store_true', help="Plot the linear regression's line")
+    args = parser.parse_args()
+
     data_dict = read_file()
     mileage_scaled, mean, stnd_dev = feature_scaling(data_dict['km'])
     theta0, theta1 = update_theta(mileage_scaled, data_dict['price'], mean, stnd_dev)
     data_file(theta0, theta1)
-    plt.plot(data_dict['km'], data_dict['price'])
-    plt.show()
+    
+    if args.plot_data:
+        plt.scatter(data_dict['km'], data_dict['price'])
+        plt.xlabel('Mileage (km)')
+        plt.ylabel('Price (euros)')
+        plt.show()
+
+    if args.plot_line:
+        plt.plot(data_dict['km'], data_dict['price'], 'o')
+        plt.plot(data_dict['km'], [predict_price(theta0, theta1, km) for km in data_dict['km']])
+        plt.xlabel('Mileage (km)')
+        plt.ylabel('Price (euros)')
+        plt.show()
 
 if __name__ == "__main__":
     main()

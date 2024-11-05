@@ -26,11 +26,10 @@ def read_file():
     """
     try:
         file = open("data", "r")
-        s = file.read()
-        data = s.split(",")
     except:
-        print("Couldn't read the data file")
-        sys.exit(1)
+        return 0, 0
+    s = file.read()
+    data = s.split(",")
     return float(data[0]), float(data[1])
 
 def main():
