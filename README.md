@@ -7,6 +7,11 @@ Usage: python3 ./predict_price.py<br/>
 The training program: This program reads a dataset file and performs linear regression on the data. During the training process. It saves the values of θ0 and θ1, which are then used in the prediction program. You can also visualize its distribution (-p flag) and the resulting regression line (-l flag).<br/>
 Usage: python3 ./training_program.py [-l --plot-line] [-p --plot-data]<br/>
 <br/>
+<img src="Figure_1.png" alt="Figure 1" width="500">
+<br/>
+<img src="Figure_2.png" alt="Figure 2" width="500">
+<br/>
+<br/>
 The precision program: Calculate the model's accuracy and evaluate its performance.<br/>
 Usage: python3 ./precision<br/>
 <br/>
